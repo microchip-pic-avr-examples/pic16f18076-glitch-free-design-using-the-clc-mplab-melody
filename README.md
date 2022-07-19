@@ -150,8 +150,8 @@ These settings set CLC4 as the pass through of the system clock (red boxes in Fi
 ### Setup - Clock Control, Configuration bits, and Interrupt Manager
 Click on Clock Control in the Project Resources list to open the configuraton menu. Within the menu, modify the following settings:
 - **Current Oscillator Source Select:** Select 'HFINTOSC_32MHz' from the dropdown menu
-- **HF Internal Clock:** Select '2_MHz' from the dropdown menu
-- **System Clock (Hz):** Verify that the Hz value updated to '2000000'
+- **HF Internal Clock:** Select '16_MHz' from the dropdown menu
+- **System Clock (Hz):** Verify that the Hz value updated to '16000000'
 
 These clock settings are also shown within the red boxes in Figure 10.
 
@@ -177,8 +177,8 @@ Click on Interrupt Manager in the Project Resouces list to open the configuratio
 
 ### Setup - NCO
 Click on NCO1 from the Project Resource list to open the configuration menu. Within the menu, modify the following settings in the order they are listed:
-1. **CLC Clock (Hz):** Change the value to be 2MHz (2000000 Hz)
-2. **Requested NCO Output Frequency:** Change the value to 999999Hz (max possible for 2MHz in above setting)
+1. **CLC Clock (Hz):** Change the value to be 16MHz (16000000 Hz)
+2. **Requested NCO Output Frequency:** Change the value to 7999993Hz (max possible for 16MHz in above setting)
 3. **Clock Source:** Select 'CLC3_OUT' from the dropdown menu
 
 These NCO settings are also shown within the red boxes in Figure 13.
@@ -269,28 +269,28 @@ Finally open up the main.c program from the projects tab (see Figure 19 - line c
     
 Insert the following code inside the  'while(1)' loop:
 
-        //wait initialize
-        NCO1ACCL = 0x00; 
-        NCO1ACCH = 0x00; 
-        NCO1ACCU = 0x00;  //clear accumulator
+    //wait initialize
+    NCO1ACCL = 0x00; 
+    NCO1ACCH = 0x00; 
+    NCO1ACCU = 0x00;  //clear accumulator
 
-        NCO1CONbits.EN = 1; //enable NCO module
-        PIR2bits.CLC2IF = 0; //clear CLC2IF interrupt flag
-        
-        //wait for pulse
-        while(!PIR2bits.CLC2IF); //wait until interrupt flag is set
+    NCO1CONbits.EN = 1; //enable NCO module
+    PIR2bits.CLC2IF = 0; //clear CLC2IF interrupt flag
+    
+    //wait for pulse
+    while(!PIR2bits.CLC2IF); //wait until interrupt flag is set
 
-            //save accumulator value
-            int8_t result2 = NCO1ACCU; 
-            int8_t result1 = NCO1ACCH;
-            int8_t result0 = NCO1ACCL;
+        //save accumulator value
+        int8_t result2 = NCO1ACCU; 
+        int8_t result1 = NCO1ACCH;
+        int8_t result0 = NCO1ACCL;
 
-            //process accumulator values to make a 20-bit value
-            int24_t measurement = ((int24_t)result2 << 16); 
-            measurement = measurement + ((int16_t)result1 << 8);
-            measurement = measurement + result0;
+        //process accumulator values to make a 20-bit value
+        int24_t measurement = ((int24_t)result2 << 16); 
+        measurement = measurement + ((int16_t)result1 << 8);
+        measurement = measurement + result0;
 
-        NCO1CONbits.EN = 0; //disable NCO module
+    NCO1CONbits.EN = 0; //disable NCO module
 
 If inserting the above code is confusing, look through the files included in this code example to see exactly where the lines of code should go.
 
