@@ -24,7 +24,7 @@ This example shows how to configure the Configurable Logic Cell (CLC) Peripheral
 ## Hardware Used
 - PIC16F18076 Curiosity Nano [(DM182029)](https://www.microchip.com/Developmenttools/ProductDetails/DM182029) <!-- update this line to have the correct DM number and the correct link to that -->
 <!-- Should I include the Saleae since it can be used to verify if the example works? -->
-<!-- Should I include the scope since it can be used to verify id the example works? -->
+<!-- Should I include the scope since it can be used to verify if the example works? -->
 
 ## Setup
 The hardware for this code example is just the PIC16F18076 Curiosity Nano Board since it has the NCO and CLC modules that are required. Figure 1 shows how to create the Glitch-Free signal by using CLC1, CLC2, and CLC3.  CLC4 will be passing through the system clock.  Most of the setup will be done through the MPLABX and Melody interfaces. 
@@ -259,21 +259,67 @@ Then open up the file.  On line 62, update the value from 0x0 to 0x4 as shown in
 
 #### Remaining Application Code
 
+Finally open up the main.c program from the projects tab (see Figure 19 - line call 'main.c'). Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
+    
+    NCO1CONbits.EN = 0;  //disable NCO module
+        
+    NCO1INCU = 0x00;
+    NCO1INCH = 0x00;
+    NCO1INCL = 0x01;     //set increment to 0x000001, or 1
+    
+Insert the following code inside the  'while(1)' loop:
 
-*************** RESUME WORK HERE ON MONDAY JULY 18th ************************
+        //wait initialize
+        NCO1ACCL = 0x00; 
+        NCO1ACCH = 0x00; 
+        NCO1ACCU = 0x00;  //clear accumulator
 
-Finally open up the main.c program from the projects tab (see Figure 19).  Delete tCopy and paste the following code 
+        NCO1CONbits.EN = 1; //enable NCO module
+        PIR2bits.CLC2IF = 0; //clear CLC2IF interrupt flag
+        
+        //wait for pulse
+        while(!PIR2bits.CLC2IF); //wait until interrupt flag is set
 
+            //save accumulator value
+            int8_t result2 = NCO1ACCU; 
+            int8_t result1 = NCO1ACCH;
+            int8_t result0 = NCO1ACCL;
 
+            //process accumulator values to make a 20-bit value
+            int24_t measurement = ((int24_t)result2 << 16); 
+            measurement = measurement + ((int16_t)result1 << 8);
+            measurement = measurement + result0;
 
-- copy in the following code into the main.c file (also can see the main.c file in this example)
+        NCO1CONbits.EN = 0; //disable NCO module
 
-<!-- Explain how to connect hardware and set up software. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+If inserting the above code is confusing, look through the files included in this code example to see exactly where the lines of code should go.
+
+Then program the device by clicking on the "Make and Program Device Main Project" from the taskbar at the top (Figure 21).
+
+*Figure 21 -  Make and Program Device Main Project Button*
+
+![Make and Program Device Main Project Button](images/Make_and_Program_Device_Main_Project_Button.png)
+
+Wait for the Output tab to show 'Programming Complete' (Figure 22) then proceed to Operation.
+
+*Figure 22 -  Programming Complete*
+
+![Programming Complete](images/Programming_Complete.png)
 
 ## Operation
 
-<!-- Explain how to operate the example. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+This example requires an external asynchronous signal source in order for it to behave correctly.  This can be acheived by using a function generator, another microcontroller, or any other method of producing a high or low signal.
+
+Before starting the asynchronous signal, ensure that there is a common ground between the devices, and that the input for the CLC is attached to the RA1 pin.
+
+The following image shows what the various logic should do during a single asynchronous pulse.
+
+*Figure 23 -  Glitch-Free Clock Output*
+
+![Glitch-Free Clock Output](images/Glitch\-Free_Clock_Output.png)
+
+<!-- NOTE: The Asynchronous signal used for this example was another cnano board.  It followed the same timing configuration as the above cnano but for the pin output it only had RA3 toggling on and off.  In between the high and low signal, there was 1us delay. Between the low and high signal, there was a 50us delay. Then the RA3 pin (of the asynchronous signal) was connected to the RA1 pin (of the CLC modules). -->
 
 ## Summary
 
-This example has demonstrated how to create a glitch-Free design using the CLC peripherals on the PIC16F18076 device.
+This example has demonstrated how to create a glitch-free design using the CLC peripherals on the PIC16F18076 device.
