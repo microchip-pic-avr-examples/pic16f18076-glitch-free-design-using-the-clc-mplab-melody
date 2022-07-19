@@ -4,8 +4,8 @@
     "content": {
         "metaDataVersion": "1.3.0",
         "name": "com.microchip.mcu8.mplabx.project.pic16f18076-glitch-free-design-using-the-clc-mplab-melody",
-        "version": " ",
-        "displayName": "",
+        "version": "1.0.0 ",
+        "displayName": "Glitch-free Design using the CLC Peripheral",
         "projectName": "pic16f18076-glitch-free-design-using-the-clc-mplab-melody",
         "shortDescription": "This code example demonstrates a glitch-free design using the CLC peripheral of the PIC microcontroller. Compatible PIC16F180xx family MCUs are: PIC16F18076",
         "ide": {
@@ -19,12 +19,12 @@
             }
         ],
         "dfp": {
-            "name": "",
-            "semverRange": ""
+            "name": "PIC16F1xxxx_DFP",
+            "semverRange": ">=1.14.187"
         },
         "configurator": {
-            "name": "",
-            "semverRange": ""
+            "name": "MCC",
+            "semverRange": ">=5.1.9"
         },
         "device": {
             "metaDataVersion": "1.0.0",
@@ -37,8 +37,17 @@
             }
         },
         "author": "Jonah Lerner",
-        "peripherals": [],
-        "keywords": [],
+        "peripherals": [
+            "CLC", "NCO", "GPIO", "Interrupts"
+        ],
+        "keywords": [
+            "MCC",
+            "Glitch-free Design",
+            "NCO",
+            "CLC",
+            "Interrupts",
+            "Configurable Logic Cell"
+        ],
         "additionalData": {
             "longDescription": {
                 "metaDataVersion": "1.0.0",
