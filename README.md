@@ -23,11 +23,9 @@ This example shows how to configure the Configurable Logic Cell (CLC) Peripheral
 
 ## Hardware Used
 - PIC16F18076 Curiosity Nano [(DM182029)](https://www.microchip.com/Developmenttools/ProductDetails/DM182029) <!-- update this line to have the correct DM number and the correct link to that -->
-<!-- Should I include the Saleae since it can be used to verify if the example works? -->
-<!-- Should I include the scope since it can be used to verify if the example works? -->
 
 ## Setup
-The hardware for this code example is just the PIC16F18076 Curiosity Nano Board since it has the NCO and CLC modules that are required. Figure 1 shows how to create the Glitch-Free signal by using CLC1, CLC2, and CLC3.  CLC4 will be passing through the system clock.  Most of the setup will be done through the MPLABX and Melody interfaces. 
+The hardware for this code example is the PIC16F18076 Curiosity Nano Board since it includes the Numerically Controlled Oscillator (NCO) and CLC modules that are required. Figure 1 shows how to create the glitch-free signal by using CLC1, CLC2, and CLC3.  CLC4 will be passing through the system clock.  Most of the setup will be done through the MPLABX and Melody interfaces. 
 
 *Figure 1 - Creating Glitch-Free Clock Signal*
 
@@ -47,12 +45,12 @@ Each of the following sections show how to configure each component of the examp
         - Select 'All Families' for family
         - Select 'PIC16F18076' for device
         - Select the Curiosity Nano board connected to your computer for tool
-            - Note: 'No Tool' can be selected too, just later on you won't be able to program a device until on is connected
+            - Note: 'No Tool' can be selected too, just later on you won't be able to program a device until one is connected
         - Click 'Next'
     - **Select Header**: SKIP
     - **Select Plugin Board**:SKIP
     - **Select Compiler**:
-        - Select the XC8 v2.36 version for the compiler 
+        - Select the XC8 v2.36 version (or newer) for the compiler 
         - Click 'Next'
     - **Selct Project Name and Folder**:
         - Enter the name of your project
@@ -218,17 +216,17 @@ Figure 15 shows the configuration menu with no Analog checkboxes checked (see re
 
 
 ### Setup - Melody Notifications
-When setting up the above components, Melody may send out differing type of notifications.  These notifications are consolidated into a list that can be found by clicking on the tab called 'Notifications[MCC]' (towards the bottom).  Figure 16 shows two types of notifications that may be listed; 'HINT' and 'WARNING'. 
+When setting up the above components, Melody may send out differing types of notifications.  These notifications are consolidated into a list that can be found by clicking on the tab called 'Notifications[MCC]' (towards the bottom).  Figure 16 shows two types of notifications that may be listed; 'HINT' and 'WARNING'. 
 
 *Figure 16 -  Melody Notification List*
 
 ![Melody Notification List](images/Melody_Notification_List.png)
 
-For the CLC1, CLC2, CLC3, and CLC4 lines (top two lines and lines 5 and 8), these are all 'HINT' notifications that are checking to make sure that the other CLC modules are configured.  Since all four modules of the CLC are being used, then they should already be configured (see above CLC configuration sections)
+For the CLC1, CLC2, CLC3, and CLC4 lines (top two lines and lines 5 and 6), these are all 'HINT' notifications that are checking to make sure that the other CLC modules are configured.  Since all four modules of the CLC are being used, then they should already be configured (see above CLC configuration sections)
 
-By following matching the 'Interrupt Manager' menu with Figure 12, the necessary code will be generated.  Therefore, for the two lines that say 'Interrupt Manager' as the source, can be ignored.
+By matching the 'Interrupt Manager' menu in Figure 12, the necessary interrupt code will be generated.  Therefore, for the two lines that say 'Interrupt Manager' as the source (lines 3 and 4), can be ignored.
 
-For the NCO1 line, there is a 'WARNING' notification.  This notification will be address in the section below titled 'Setup - Software' which will show how to set 'CLC3_OUT' as the Clock Source (see Figure X).
+For the NCO1 line, there is a 'WARNING' notification.  This notification will be addressed in the section below titled 'Setup - Software' which will show how to set 'CLC3_OUT' as the clock source (see Figure 20).
 
 ### Setup - Software
 
@@ -251,7 +249,7 @@ Next, the CLC3_OUT signal needs to be configured as a clock source (since it had
 
 ![Navigate to CLC3.c](images/Navigate_to_CLC3dotc.png)
 
-Then open up the file.  On line 62, update the value from 0x0 to 0x4 as shown in Figure 20.
+Then open up the file.  On line 62 in Figure 20, update the value from 0x0 to 0x4.  Make sure that the register that is being updated is the "CLCDATA" register.
 
 *Figure 20 -  Update CLCDATA Register*
 
@@ -259,7 +257,7 @@ Then open up the file.  On line 62, update the value from 0x0 to 0x4 as shown in
 
 #### Remaining Application Code
 
-Finally open up the main.c program from the projects tab (see Figure 19 - line call 'main.c'). Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
+Finally open up the main.c program from the projects tab (see Figure 19 - line named 'main.c'). Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
     
     NCO1CONbits.EN = 0;  //disable NCO module
         
@@ -300,7 +298,7 @@ Then program the device by clicking on the "Make and Program Device Main Project
 
 ![Make and Program Device Main Project Button](images/Make_and_Program_Device_Main_Project_Button.png)
 
-Wait for the Output tab to show 'Programming Complete' (Figure 22) then proceed to Operation.
+Wait for the Output tab to show 'Programming Complete' (Figure 22) then proceed to **Operation**.
 
 *Figure 22 -  Programming Complete*
 
@@ -308,9 +306,9 @@ Wait for the Output tab to show 'Programming Complete' (Figure 22) then proceed 
 
 ## Operation
 
-This example requires an external asynchronous signal source in order for it to behave correctly.  This can be acheived by using a function generator, another microcontroller, or any other method of producing a high or low signal.
+This example requires an external asynchronous signal source in order for it to behave as expected.  This can be acheived by using a function generator, another microcontroller, or any other method of producing a high or low pulse.
 
-Before starting the asynchronous signal, ensure that there is a common ground between the devices, and that the input for the CLC is attached to the RA1 pin.
+Before starting the asynchronous signal, ensure that there is a common ground between the devices, and that the input for the CLC is attached to the RA1 pin. Then start running the asynchronous pulse.
 
 The following image shows what the various logic should do during a single asynchronous pulse.
 
@@ -322,4 +320,4 @@ The following image shows what the various logic should do during a single async
 
 ## Summary
 
-This example has demonstrated how to create a glitch-free design using the CLC peripherals on the PIC16F18076 device.
+This example has demonstrated how to create a glitch-free design using the CLC and NCO peripherals on the PIC16F18076 device.
