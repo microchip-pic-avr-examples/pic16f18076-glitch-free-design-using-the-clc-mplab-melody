@@ -38,13 +38,13 @@
         },
         "author": "Jonah Lerner",
         "peripherals": [
-            "CLC", "NCO", "GPIO", "Interrupt"
+            "CLC", "NCO", "GPIO", "INT"
         ],
         "keywords": [
             "MCC",
             "NCO",
             "CLC",
-            "Interrupt"
+            "INT"
         ],
         "additionalData": {
             "longDescription": {
