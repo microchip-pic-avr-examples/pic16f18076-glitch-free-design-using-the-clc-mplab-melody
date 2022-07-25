@@ -38,15 +38,13 @@
         },
         "author": "Jonah Lerner",
         "peripherals": [
-            "CLC", "NCO", "GPIO", "Interrupts"
+            "CLC", "NCO", "GPIO", "Interrupt"
         ],
         "keywords": [
             "MCC",
-            "Glitch-free Design",
             "NCO",
             "CLC",
-            "Interrupts",
-            "Configurable Logic Cell"
+            "Interrupt"
         ],
         "additionalData": {
             "longDescription": {
