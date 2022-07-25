@@ -4,7 +4,7 @@
     "content": {
         "metaDataVersion": "1.3.0",
         "name": "com.microchip.mcu8.mplabx.project.pic16f18076-glitch-free-design-using-the-clc-mplab-melody",
-        "version": "1.0.0 ",
+        "version": "1.0.0",
         "displayName": "Glitch-free Design using the CLC Peripheral",
         "projectName": "pic16f18076-glitch-free-design-using-the-clc-mplab-melody",
         "shortDescription": "This code example demonstrates a glitch-free design using the CLC peripheral of the PIC microcontroller. Compatible PIC16F180xx family MCUs are: PIC16F18076",
