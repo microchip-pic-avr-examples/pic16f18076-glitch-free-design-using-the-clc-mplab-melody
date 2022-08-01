@@ -248,7 +248,7 @@ Next, the CLC3_OUT signal needs to be configured as a clock source (since it had
 
 ![Navigate to main.c](images/Navigate_to_maindotc.png)
 
-Finally open up the main.c source file. Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
+Open up the main.c source file. Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
 
     CLCDATA = 0x4; //set CLC3_OUT output bit
     
