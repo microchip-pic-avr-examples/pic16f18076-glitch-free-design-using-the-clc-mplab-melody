@@ -44,12 +44,12 @@ void NCO1_Initialize(void){
     NCO1ACCH = 0x0;
     //NCOACC 0x0; 
     NCO1ACCL = 0x0;
-    //NCOINC undefined; 
+    //NCOINC 0; 
     NCO1INCU = 0x0;
-    //NCOINC undefined; 
+    //NCOINC 0; 
     NCO1INCH = 0x0;
-    //NCOINC undefined; 
-    NCO1INCL = 0x0;
+    //NCOINC 1; 
+    NCO1INCL = 0x1;
     //NEN enabled; NPOL active_hi; NPFM FDC_mode; 
     NCO1CON = 0x80;
 }

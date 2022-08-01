@@ -224,7 +224,7 @@ The warnings for this project concerning the CLC1, CLC2, CLC3, and CLC4 modules 
 
 The notifications regarding the 'Interrupt Manager' can be ignored in this example, since the Interrupt Manager was configured in Figure 12 which ensures the required interrupt code will be generated.
 
-The notification generated pertaining to the NCO1 module, is a 'WARNING' notification. This notification will be addressed in the section below titled 'Setup - Software' which will show how to set 'CLC3_OUT' as the clock source (see Figure 20).
+The notification generated pertaining to the NCO1 module, is a 'WARNING' notification. This notification will be addressed in the section below titled 'Setup - Software' which will show how to set 'CLC3_OUT' as the clock source (see 'Application Code' section below).
 
 ### Setup - Software
 
@@ -240,29 +240,20 @@ There may be a popup once 'Generate' is clicked and it looks like Figure 18, cli
 
 ![Melody Code Warning](images/Melody_Code_Warning.png)
 
-#### Set CLC3_OUT as a Clock Source
-Next, the CLC3_OUT signal needs to be configured as a clock source (since it had the 'WARNING' notification).  This configuration will be done by setting the output bit for the CLC3 module.  To do this, navigate to the clc3.c file in Figure 19.
+#### Application Code
 
-*Figure 19 -  Navigate to CLC3.c*
+Next, the CLC3_OUT signal needs to be configured as a clock source (since it had the 'WARNING' notification).  This configuration will be done by setting the output bit for the CLC3 module.  To do this, navigate to the main.c file in Figure 19.
 
-![Navigate to CLC3.c](images/Navigate_to_CLC3dotc.png)
+*Figure 19 -  Navigate to main.c*
 
-Then open up the file.  On line 62 in Figure 20, update the value from 0x0 to 0x4.  Make sure that the register that is being updated is the "CLCDATA" register.
+![Navigate to main.c](images/Navigate_to_maindotc.png)
 
-*Figure 20 -  Update CLCDATA Register*
+Finally open up the main.c source file. Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
 
-![Update CLCDATA Register](images/Update_CLCDATA_Register.png)
-
-#### Remaining Application Code
-
-Finally open up the main.c source file from the projects tab (see Figure 19 - line named 'main.c'). Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
+    CLCDATA = 0x4; //set CLC3_OUT output bit
     
     NCO1CONbits.EN = 0;  //disable NCO module
-        
-    NCO1INCU = 0x00;
-    NCO1INCH = 0x00;
-    NCO1INCL = 0x01;     //set increment to 0x000001, or 1
-    
+           
 Insert the following code inside the  'while(1)' loop:
 
     //wait initialize
@@ -290,15 +281,15 @@ Insert the following code inside the  'while(1)' loop:
 
 Refer to the main.c file in the MPLABX project for this code example to see the exact placement of this code snippet.
 
-Program the device by clicking on the "Make and Program Device Main Project" from the taskbar at the top (Figure 21).
+Program the device by clicking on the "Make and Program Device Main Project" from the taskbar at the top (Figure 20).
 
-*Figure 21 -  Make and Program Device Main Project Button*
+*Figure 20 -  Make and Program Device Main Project Button*
 
 ![Make and Program Device Main Project Button](images/Make_and_Program_Device_Main_Project_Button.png)
 
-Wait for the Output tab to show 'Programming Complete' (Figure 22) then proceed to the **Operation** section below.
+Wait for the Output tab to show 'Programming Complete' (Figure 21) then proceed to the **Operation** section below.
 
-*Figure 22 -  Programming Complete*
+*Figure 21 -  Programming Complete*
 
 ![Programming Complete](images/Programming_Complete.png)
 
@@ -310,7 +301,7 @@ Before starting the asynchronous signal, ensure that there is a common ground be
 
 The following image shows the resulting waveforms for this code example, illustrating how the logic should behave during a single asynchronous pulse.
 
-*Figure 23 -  Glitch-Free Clock Output*
+*Figure 22 -  Glitch-Free Clock Output*
 
 ![Glitch-Free Clock Output](images/Glitch\-Free_Clock_Output.png)
 

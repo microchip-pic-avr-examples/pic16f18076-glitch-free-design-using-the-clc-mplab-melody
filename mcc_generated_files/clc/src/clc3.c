@@ -59,7 +59,7 @@ void CLC3_Initialize(void)
     // LCG4D1N disabled; LCG4D1T disabled; LCG4D2N disabled; LCG4D2T disabled; LCG4D3N disabled; LCG4D3T disabled; LCG4D4N disabled; LCG4D4T disabled; 
     CLCnGLS3 = 0x0;
     // LCOUT 0x00; 
-    CLCDATA = 0x4;
+    CLCDATA = 0x00;
     // LCMODE 4-input AND; LCINTN disabled; LCINTP disabled; LCEN enabled; 
     CLCnCON = 0x82;
 

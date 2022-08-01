@@ -36,8 +36,10 @@ int main(void)
 {
     SYSTEM_Initialize();
     
-    NCO1CONbits.EN = 0;  //disable NCO module
-        
+    CLCDATA = 0x4; //set CLC3_OUT
+    
+    NCO1CONbits.EN = 0; //disable NCO module
+    
     NCO1INCU = 0x00;
     NCO1INCH = 0x00;
     NCO1INCL = 0x01;     //set increment to 0x000001, or 1
