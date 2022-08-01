@@ -42,7 +42,7 @@ This code example uses the PIC16F18076 Curiosity Nano Board which includes the N
     - **Step 2 - "Select Device"**: 
         - Select 'All Families' for family
         - Select 'PIC16F18076' for device
-        - Select the Curiosity Nano board connected to your computer for tool
+        - Select the Curiosity Nano board connected to the computer for tool
             - Note: 'No Tool' can also be selected for this field. It is important to note that a tool must eventually be selected in order for a device to be programmed.
         - Click 'Next'
     - **Step 3 - "Select Header"**: Not applicable for this code example.
@@ -56,7 +56,7 @@ This code example uses the PIC16F18076 Curiosity Nano Board which includes the N
         - Ensure that the "Set as main project" checkbox has been selected.
         - Click 'Finish'
 - Step 3: Open up 'MCC' from the toolbar at the top (then go to Step 4)
-    - If you don't see 'MCC' in your toolbar, click on the link above for 'MPLAB Code Configurator' and follow the 'Easy Installation' video at the link. Then open up MCC.
+    - If 'MCC' is not in the toolbar, click on the link above for 'MPLAB Code Configurator' and follow the 'Easy Installation' video at the link. Then open up MCC.
 - Step 4: Click 'Select MCC Melody' and then 'Finish' from the MCC Content Manager Wizard (red box in Figure 2 and Figure 3)
 
 *Figure 2 - MCC Content Manager Wizard*
@@ -187,15 +187,15 @@ These NCO settings are also shown within the red boxes in Figure 13.
 
 Click on Pins from the Project Resources list to open the configuration menu and pins grid view.  Within the pins grid view, modify only the following pins:
 
-- **CLC4 -- CLC4 -- Output** Click PORTB pin 1, wait for the green box with lock inside to appear
-- **CLC4 -- CLCIN0 -- Input** Click PORTC pin 7, wait for the green box with lock to disappear
-- **CLC4 -- CLCIN3 -- Input** Click PORTB pin 7, wait for pin to be unlocked
-- **CLC3 -- CLC3 -- Output** Click PORTB pin 3, wait for pin to be locked
-- **CLC3 -- CLCIN2 -- Input** Click PORTB pin 4, wait for pin to be locked
-- **CLC2 -- CLC2 -- Output** Click PORTC pin 3, wait for pin to be locked
-- **CLC1 -- CLC1 -- Output** Click PORTA pin 2, wait for pin to be locked
-- **CLC1 -- CLCIN0 -- Input** Click PORTC pin 7, wait for pin to be locked
-- **NCO1 -- NCO1 -- Output** Click PORTA pin 5, wait for pin to be locked
+- **CLC4 -- CLC4 -- Output** Click PORTB pin 1. This pin should have a green box with a closed lock.
+- **CLC4 -- CLCIN0 -- Input** Click PORTC pin 7. This pin should have an orange box with an open lock.
+- **CLC4 -- CLCIN3 -- Input** Click PORTB pin 7. This pin should have a green box with a closed lock.
+- **CLC3 -- CLC3 -- Output** Click PORTB pin 3. This pin should have a green box with a closed lock.
+- **CLC3 -- CLCIN2 -- Input** Click PORTB pin 4. This pin should have a green box with a closed lock.
+- **CLC2 -- CLC2 -- Output** Click PORTC pin 3. This pin should have a green box with a closed lock.
+- **CLC1 -- CLC1 -- Output** Click PORTA pin 2. This pin should have a green box with a closed lock.
+- **CLC1 -- CLCIN0 -- Input** Click PORTC pin 7. This pin should have a green box with a closed lock.
+- **NCO1 -- NCO1 -- Output** Click PORTA pin 5. This pin should have a green box with a closed lock.
 
 Refer to the image below for an illustration of all of the pin configurations described above (highlighted by red boxes in Figure 14).
 
@@ -222,7 +222,7 @@ When setting up the above components, Melody generate a few different types of n
 
 The warnings for this project concerning the CLC1, CLC2, CLC3, and CLC4 modules are all 'HINT' notifications that are checking to make sure that the other CLC modules are configured since there are dependencies in the configurations. Since all four modules of the CLC are being used, then they should already be configured (see above CLC configuration sections).
 
-By matching the 'Interrupt Manager' menu in Figure 12, the necessary interrupt code will be generated.  Therefore, for the two lines that say 'Interrupt Manager' as the source (lines 3 and 4), can be ignored.
+The notifications regarding the 'Interrupt Manager' can be ignored in this example, since the Interrupt Manager was configured in Figure 12 which ensures the required interrupt code will be generated.
 
 The notification generated pertaining to the NCO1 module, is a 'WARNING' notification. This notification will be addressed in the section below titled 'Setup - Software' which will show how to set 'CLC3_OUT' as the clock source (see Figure 20).
 
@@ -234,7 +234,7 @@ Click Generate within the Project Resources Menu to generate the code (Figure 17
 
 ![Generate Code](images/Generate_Code.png)
 
-There may be a popup once you click Generate that looks like Figure 18, click Yes to continue.  The next step will solve the issue the popup is warning about.
+There may be a popup once 'Generate' is clicked and it looks like Figure 18, click Yes to continue.  The next step will solve the issue the popup is warning about.
 
 *Figure 18 -  Melody Code Warning*
 
