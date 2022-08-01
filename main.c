@@ -36,7 +36,7 @@ int main(void)
 {
     SYSTEM_Initialize();
     
-    CLCDATA = 0x4; //set CLC3_OUT
+    CLCDATA = 0x4; //set CLC3_OUT output bit
     
     NCO1CONbits.EN = 0; //disable NCO module
     
