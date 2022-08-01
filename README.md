@@ -25,37 +25,35 @@ This example shows how to configure the Configurable Logic Cell (CLC) Peripheral
 - PIC16F18076 Curiosity Nano [(DM182029)](https://www.microchip.com/Developmenttools/ProductDetails/DM182029) <!-- update this line to have the correct DM number and the correct link to that -->
 
 ## Setup
-The hardware for this code example is the PIC16F18076 Curiosity Nano Board since it includes the Numerically Controlled Oscillator (NCO) and CLC modules that are required. Figure 1 shows how to create the glitch-free signal by using CLC1, CLC2, and CLC3.  CLC4 will be passing through the system clock.  Most of the setup will be done through the MPLABX and Melody interfaces. 
+This code example uses the PIC16F18076 Curiosity Nano Board which includes the Numerically Controlled Oscillator (NCO) and Configurable Logic Cell (CLC) modules that are required for this application. Figure 1 shows a block diagram illustrating how to create the glitch-free signal by using CLC1, CLC2, and CLC3. CLC4 is used in this example to feed the system clock (CLOCK).  Most of the configuration for this code example will be done using MCC Melody.
 
 *Figure 1 - Creating Glitch-Free Clock Signal*
 
 
 ![Creating Glitch-Free Clock Signal](images/Creating_Glitch-Free_Clock_Signal.png)
 
-Each of the following sections show how to configure each component of the example to be able to create the example yourself from scratch.
-
 ### Setup - MPLABX and Melody Environment
 - Step 1: Open up MPLABX v6.0.0 or newer
-- Step 2: Create a new project with the following information (bold is the step on the left side of the new project wizard)
-    - **Choose Project**: 
+- Step 2: Create a new project using the following settings by selecting the "New Project" option under the "File" dropdown menu.
+    - **Step 1 - "Choose Project"**: 
         - Select the 'Microchip Embedded' category 
         - Select the 'Standalone Project' project
         - Click 'Next'
-    - **Select Device**: 
+    - **Step 2 - "Select Device"**: 
         - Select 'All Families' for family
         - Select 'PIC16F18076' for device
         - Select the Curiosity Nano board connected to your computer for tool
-            - Note: 'No Tool' can be selected too, just later on you won't be able to program a device until one is connected
+            - Note: 'No Tool' can also be selected for this field. It is important to note that a tool must eventually be selected in order for a device to be programmed.
         - Click 'Next'
-    - **Select Header**: SKIP
-    - **Select Plugin Board**:SKIP
-    - **Select Compiler**:
+    - **Step 3 - "Select Header"**: Not applicable for this code example.
+    - **Step 4 - "Select Plugin Board"**: Not applicable for this code example.
+    - **Step 5 - "Select Compiler"**:
         - Select the XC8 v2.36 version (or newer) for the compiler 
         - Click 'Next'
-    - **Selct Project Name and Folder**:
-        - Enter the name of your project
-        - Make sure that the Project Location and Folder are what you want
-        - Make sure that 'Set as main project' is selected
+    - **Step 6 - "Select Project Name and Folder"**:
+        - Enter the project name.
+        - Verify that the "Project Location" and "Project Folder" are correct.
+        - Ensure that the "Set as main project" checkbox has been selected.
         - Click 'Finish'
 - Step 3: Open up 'MCC' from the toolbar at the top (then go to Step 4)
     - If you don't see 'MCC' in your toolbar, click on the link above for 'MPLAB Code Configurator' and follow the 'Easy Installation' video at the link. Then open up MCC.
@@ -68,7 +66,7 @@ Each of the following sections show how to configure each component of the examp
 *Figure 3 - MCC Content Manager Wizard (Finish)*
 
 ![MCC Content Manager Wizard (Finish)](images/MCC_Content_Manager_Wizard_Finish.png)
-- Step 5: Select all four CLC modules and the NCO Module from the Device Resources list on the left (see red and green boxes in Figure 4, click the 'plus' mark) and make sure they show up within the Project Resouces list (blue box in Figure 5)
+- Step 5: Add all four CLC modules and the NCO Module from the "Device Resources" list on the left side of the window(see red and green boxes in Figure 4) to the project by clicking the green "plus" marks. After doing this, open the "Project Resources" list and ensure that all of the modules have been successfully added to the project. (blue box in Figure 5)
 
 *Figure 4 - Device Resources for CLC and NCO*
 
@@ -78,7 +76,7 @@ Each of the following sections show how to configure each component of the examp
 
 ![Project Resources for CLC and NCO](images/Project_Resources_for_CLC_and_NCO.png)
 
-### Setup - CLC 1
+### Setup - CLC1 Configuration
 Click on CLC1 in the Project Resources list to open the configuration menu. Within the menu, modify the following settings:
 - **Logic Cell Mode bits:** Select 'OR-XOR' from the dropdown menu
 - **Second Input:** Select 'Fosc' from the dropdown menu
@@ -86,13 +84,13 @@ Click on CLC1 in the Project Resources list to open the configuration menu. With
 - **Second OR Gate:** Select the second input to be 'Fosc'
 - **Fourth OR Gate:** Select the third input to be 'CLC2_OUT'
 
-These settings set CLC1 as the XOR of the Clock signal and the output of CLC2 (red boxes in Figure 6).
+These settings configure CLC1 as the logical XOR of the System Clock signal and the output of CLC2. Refer to the image below for an illustration of all of th emodule configurations described above (red boxes in Figure 6).
 
 *Figure 6 - Configuration of CLC1*
 
 ![Configuration of CLC1](images/Configuration_of_CLC1.png)
 
-### Setup - CLC 2
+### Setup - CLC2 Configuration
 Click on CLC2 in the Project Resources list to open the configuration menu. Within the menu, modify the following settings: 
 - **Logic Cell Mode bits:** Select '1-input D flip-flop with S and R' from the dropdown menu
 - **Enable CLC Interrupt:** Select 'Enable CLC Interrupt'
@@ -104,13 +102,13 @@ Click on CLC2 in the Project Resources list to open the configuration menu. With
 - **First OR Gate:** Select the third input to be 'CLC1_OUT', this ultimately becomes the clock line for the D flip-flop
 - **Second OR Gate:** Select the first input to be 'CLCIN1', this ultimately becomes the data line (D) for the D flip-flop
 
-These settings set CLC2 as the D flip-flop of the asynchronous pulse and make it clocked by the output of CLC1 (red boxes in Figure 7).
+These settings configure CLC2 as a D flip-flop using an asynchronous pulse as its input, which is clocked by the output of CLC1. Refer to the image below for an illustration of all of the module configurations described above (red boxes in Figure 7).
 
 *Figure 7 -  Configuration of CLC2*
 
 ![Configuration of CLC2](images/Configuration_of_CLC2.png)
 
-### Setup - CLC 3
+### Setup - CLC3 Configuration
 Click on CLC3 in the Project Resources list to open the configuration menu. Within the menu, modify the following settings 
 - **Logic Cell Mode bits:** Select '4-input AND' from the dropdown menu
 - **First Input:** Select 'CLCIN2' from the dropdown menu
@@ -122,13 +120,13 @@ Click on CLC3 in the Project Resources list to open the configuration menu. With
 - **Third OR Gate:** Select the third input to be 'CLC2_OUT'
 - **Fourth OR Gate:** Select the NOT symbol on the right side of the gate
 
-These settings set CLC3 as the AND of the asynchronous pulse and the output of CLC2 (red boxes in Figure 8).
+These settings configure CLC3 to provide the logical AND of the aychronous pulse and the output of CLC2. Refer to the image below for an illustration of all of the module configurations described above (red boxes in Figure 8).
 
 *Figure 8 -  Configuration of CLC3*
 
 ![Configuration of CLC3](images/Configuration_of_CLC3.png)
 
-### Setup - CLC 4
+### Setup - CLC4 Configuration
 Click on CLC4 in the Project Resources list to open the configuration menu. Within the menu, modify the following settings 
 - **Logic Cell Mode bits:** Select '4-input AND' from the dropdown menu
 - **First Input:** Select 'CLCIN3' from the dropdown menu
@@ -139,19 +137,19 @@ Click on CLC4 in the Project Resources list to open the configuration menu. With
 - **Third OR Gate:** Select the NOT symbol on the right side of the gate
 - **Fourth OR Gate:** Select the NOT symbol on the right side of the gate
 
-These settings set CLC4 as the pass through of the system clock (red boxes in Figure 9).
+These settings configure CLC4 as a pass through of the system clock. Refer to the image below for an illistration of all of the module configurations described above (red boxes in Figure 9).
 
 *Figure 9 -  Configuration of CLC4*
 
 ![Configuration of CLC4](images/Configuration_of_CLC4.png)
 
-### Setup - Clock Control, Configuration bits, and Interrupt Manager
+### Setup - System Settings )Clock Control, Configuration bits, and Interrupt Manager)
 Click on Clock Control in the Project Resources list to open the configuraton menu. Within the menu, modify the following settings:
 - **Current Oscillator Source Select:** Select 'HFINTOSC_32MHz' from the dropdown menu
 - **HF Internal Clock:** Select '16_MHz' from the dropdown menu
 - **System Clock (Hz):** Verify that the Hz value updated to '16000000'
 
-These clock settings are also shown within the red boxes in Figure 10.
+Refer to the image below for an illustration of all of the configurations described above (red boxes in Figure 10).
 
 *Figure 10 -  Clock Control Configuration*
 
@@ -173,7 +171,7 @@ Click on Interrupt Manager in the Project Resouces list to open the configuratio
 
 ![Interrupt Manager Settings](images/Interrupt_Manager_Settings.png)
 
-### Setup - NCO
+### Setup - NCO1
 Click on NCO1 from the Project Resource list to open the configuration menu. Within the menu, modify the following settings in the order they are listed:
 1. **CLC Clock (Hz):** Change the value to be 16MHz (16000000 Hz)
 2. **Requested NCO Output Frequency:** Change the value to 7999993Hz (max possible for 16MHz in above setting)
@@ -199,7 +197,7 @@ Click on Pins from the Project Resources list to open the configuration menu and
 - **CLC1 -- CLCIN0 -- Input** Click PORTC pin 7, wait for pin to be locked
 - **NCO1 -- NCO1 -- Output** Click PORTA pin 5, wait for pin to be locked
 
-Figure 14 shows the final outcome from the above steps within the red boxes.
+Refer to the image below for an illustration of all of the pin configurations described above (highlighted by red boxes in Figure 14).
 
 *Figure 14 -  Pins Grid View*
 
@@ -216,17 +214,17 @@ Figure 15 shows the configuration menu with no Analog checkboxes checked (see re
 
 
 ### Setup - Melody Notifications
-When setting up the above components, Melody may send out differing types of notifications.  These notifications are consolidated into a list that can be found by clicking on the tab called 'Notifications[MCC]' (towards the bottom).  Figure 16 shows two types of notifications that may be listed; 'HINT' and 'WARNING'. 
+When setting up the above components, Melody generate a few different types of notifications. These notifications are consolidated into a list that can be found by clicking on the tab called 'Notifications[MCC]' (towards the bottom).  Figure 16 shows two types of notifications that may be listed; 'HINT' and 'WARNING'. 
 
 *Figure 16 -  Melody Notification List*
 
 ![Melody Notification List](images/Melody_Notification_List.png)
 
-For the CLC1, CLC2, CLC3, and CLC4 lines (top two lines and lines 5 and 6), these are all 'HINT' notifications that are checking to make sure that the other CLC modules are configured.  Since all four modules of the CLC are being used, then they should already be configured (see above CLC configuration sections)
+The warnings for this project concerning the CLC1, CLC2, CLC3, and CLC4 modules are all 'HINT' notifications that are checking to make sure that the other CLC modules are configured since there are dependencies in the configurations. Since all four modules of the CLC are being used, then they should already be configured (see above CLC configuration sections).
 
 By matching the 'Interrupt Manager' menu in Figure 12, the necessary interrupt code will be generated.  Therefore, for the two lines that say 'Interrupt Manager' as the source (lines 3 and 4), can be ignored.
 
-For the NCO1 line, there is a 'WARNING' notification.  This notification will be addressed in the section below titled 'Setup - Software' which will show how to set 'CLC3_OUT' as the clock source (see Figure 20).
+The notification generated pertaining to the NCO1 module, is a 'WARNING' notification. This notification will be addressed in the section below titled 'Setup - Software' which will show how to set 'CLC3_OUT' as the clock source (see Figure 20).
 
 ### Setup - Software
 
@@ -257,7 +255,7 @@ Then open up the file.  On line 62 in Figure 20, update the value from 0x0 to 0x
 
 #### Remaining Application Code
 
-Finally open up the main.c program from the projects tab (see Figure 19 - line named 'main.c'). Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
+Finally open up the main.c source file from the projects tab (see Figure 19 - line named 'main.c'). Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
     
     NCO1CONbits.EN = 0;  //disable NCO module
         
@@ -290,15 +288,15 @@ Insert the following code inside the  'while(1)' loop:
 
     NCO1CONbits.EN = 0; //disable NCO module
 
-If inserting the above code is confusing, look through the files included in this code example to see exactly where the lines of code should go.
+Refer to the main.c file in the MPLABX project for this code example to see the exact placement of this code snippet.
 
-Then program the device by clicking on the "Make and Program Device Main Project" from the taskbar at the top (Figure 21).
+Program the device by clicking on the "Make and Program Device Main Project" from the taskbar at the top (Figure 21).
 
 *Figure 21 -  Make and Program Device Main Project Button*
 
 ![Make and Program Device Main Project Button](images/Make_and_Program_Device_Main_Project_Button.png)
 
-Wait for the Output tab to show 'Programming Complete' (Figure 22) then proceed to **Operation**.
+Wait for the Output tab to show 'Programming Complete' (Figure 22) then proceed to the **Operation** section below.
 
 *Figure 22 -  Programming Complete*
 
@@ -308,9 +306,9 @@ Wait for the Output tab to show 'Programming Complete' (Figure 22) then proceed 
 
 This example requires an external asynchronous signal source in order for it to behave as expected.  This can be acheived by using a function generator, another microcontroller, or any other method of producing a high or low pulse.
 
-Before starting the asynchronous signal, ensure that there is a common ground between the devices, and that the input for the CLC is attached to the RA1 pin. Then start running the asynchronous pulse.
+Before starting the asynchronous signal, ensure that there is a common ground between the devices, and that the input for the CLC is attached to the RA1 pin. After all of this has been done, start running the asynchronous pulse.
 
-The following image shows what the various logic should do during a single asynchronous pulse.
+The following image shows the resulting waveforms for this code example, illustrating how the logic should behave during a single asynchronous pulse.
 
 *Figure 23 -  Glitch-Free Clock Output*
 
