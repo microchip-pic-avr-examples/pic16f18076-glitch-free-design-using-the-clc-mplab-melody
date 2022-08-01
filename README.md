@@ -174,7 +174,7 @@ Click on Interrupt Manager in the Project Resouces list to open the configuratio
 ### Setup - NCO1
 Click on NCO1 from the Project Resource list to open the configuration menu. Within the menu, modify the following settings in the order they are listed:
 1. **CLC Clock (Hz):** Change the value to be 16MHz (16000000 Hz)
-2. **Requested NCO Output Frequency:** Change the value to 7999993Hz (max possible for 16MHz in above setting)
+2. **Requested NCO Output Frequency:** Change the value to 11Hz (the value that corresponds to NCO1INCU = 0x0, NCO1INCH = 0x0, and NCO1INCL = 0x1)
 3. **Clock Source:** Select 'CLC3_OUT' from the dropdown menu
 
 These NCO settings are also shown within the red boxes in Figure 13.
