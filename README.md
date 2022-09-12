@@ -8,7 +8,7 @@ This example shows how to configure the Configurable Logic Cell (CLC) Peripheral
 ## Related Documentation
 - [PIC16F18076 Data Sheet](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/PIC16F18056-76-28-40-Pin-Microcontroller-Data-Sheet-40002325B.pdf)
 - [PIC16F18076 Family Product Page](https://www.microchip.com/wwwproducts/en/PIC16F18076)
-- [Glitch-Free Design Using the Configurable Logic Cell (CLC) Application Note](https://www.microchip.com/en-us/application-notes/an3313) <!-- update the an#### with the actual number when the time comes-->
+- [Glitch-Free Design Using the Configurable Logic Cell (CLC) Application Note](https://www.microchip.com/en-us/application-notes/an3324)
 
 ## Software Used
 
@@ -22,7 +22,7 @@ This example shows how to configure the Configurable Logic Cell (CLC) Peripheral
 
 
 ## Hardware Used
-- PIC16F18076 Curiosity Nano [(DM182029)](https://www.microchip.com/Developmenttools/ProductDetails/DM182029) <!-- update this line to have the correct DM number and the correct link to that -->
+- PIC16F18076 Curiosity Nano [(DM182029)](https://www.microchip.com/en-us/development-tool/EV53Z50A)
 
 ## Setup
 This code example uses the PIC16F18076 Curiosity Nano Board which includes the Numerically Controlled Oscillator (NCO) and Configurable Logic Cell (CLC) modules that are required for this application. Figure 1 shows a block diagram illustrating how to create the glitch-free signal by using CLC1, CLC2, and CLC3. CLC4 is used in this example to feed the system clock (CLOCK).  Most of the configuration for this code example will be done using MCC Melody.
