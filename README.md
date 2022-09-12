@@ -307,6 +307,7 @@ The following image shows the resulting waveforms for this code example, illustr
 
 <!-- NOTE: The Asynchronous signal used for this example was another cnano board.  It followed the same timing configuration as the above cnano but for the pin output it only had RA3 toggling on and off.  In between the high and low signal, there was 1us delay. Between the low and high signal, there was a 50us delay. Then the RA3 pin (of the asynchronous signal) was connected to the RA1 pin (of the CLC modules). -->
 
+
 ## Summary
 
 This example has demonstrated how to create a glitch-free design using the CLC and NCO peripherals on the PIC16F18076 device.
