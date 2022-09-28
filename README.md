@@ -14,18 +14,23 @@ This example shows how to configure the Configurable Logic Cell (CLC) Peripheral
 
 
 - [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) **6.0.0** or newer
-- [MPLAB® Xpress IDE](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xpress) (alternative to MPLAB® X IDE)
-- [MPLAB® XC8](http://www.microchip.com/mplab/compilers) **2.36** or a newer compiler 
-- [MPLAB® Code Configurator (MCC)](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator) **5.1.9** or newer 
-- [MPLAB® Melody Library](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator) **2.2.16** or newer 
+- [MPLAB Xpress IDE](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xpress) (alternative to MPLAB X IDE)
+- [MPLAB XC8 Compiler](http://www.microchip.com/mplab/compilers) **2.36** or a newer compiler 
+- [MPLAB Code Configurator (MCC)](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator) **5.1.9** or newer 
 - [Microchip PIC16F1xxxx Series Device Support pack](https://packs.download.microchip.com/) **1.14.187** or newer Device Pack
 
 
 ## Hardware Used
 - PIC16F18076 Curiosity Nano [(DM182029)](https://www.microchip.com/en-us/development-tool/EV53Z50A)
 
+## Intoduction
+
+One of the challenges that digital designers frequently run into involves getting rid of glitches in their design. A 'glitch' is a signal which does not remain active for a full clock period. If a signal with a glitch feeds ths clock line of numerous latches, some of the latches may be updated while others may not.  This situation is clearly one that designers want to avoid.
+
+This code example demonstrates how to implement a glitch-free design using the PIC16F18076.
+
 ## Setup
-This code example uses the PIC16F18076 Curiosity Nano Board which includes the Numerically Controlled Oscillator (NCO) and Configurable Logic Cell (CLC) modules that are required for this application. Figure 1 shows a block diagram illustrating how to create the glitch-free signal by using CLC1, CLC2, and CLC3. CLC4 is used in this example to feed the system clock (CLOCK).  Most of the configuration for this code example will be done using MCC Melody.
+This code example uses the PIC16F18076 Curiosity Nano Board which includes the Numerically Controlled Oscillator (NCO) and Configurable Logic Cell (CLC) modules that are required for this application. Figure 1 shows a block diagram illustrating how to create the glitch-free signal by using CLC1, CLC2, and CLC3. CLC4 is used in this example to output the system clock (CLOCK).  Most of the configuration for this code example will be done using MCC Melody.
 
 *Figure 1 - Creating Glitch-Free Clock Signal*
 
