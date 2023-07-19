@@ -226,7 +226,7 @@ When configuring the CLC and NCO modules, Melody generate a few different types 
 
 ![Melody Notification List](images/Melody_Notification_List.png)
 
-The warnings for this project, referring to the CLC1, CLC2, CLC3, and CLC4 modules, are all 'HINT' notifications that are checking to make sure that the other CLC modules are configured since there are dependencies in the configurations. Since all four modules of the CLC are being used, then they should already be configured (refer to the CLC configuration sections).
+The warnings for this project (referring to the CLC1, CLC2, CLC3, and CLC4 modules) are all 'HINT' notifications that are checking to make sure that the other CLC modules are configured since there are dependencies in the configurations. Since all four modules of the CLC are being used, then they should already be configured (refer to the CLC configuration sections).
 
 The notifications regarding the 'Interrupt Manager' can be ignored in this example, since the Interrupt Manager was configured in Figure 12, which ensures the required interrupt code will be generated.
 
@@ -234,7 +234,7 @@ The notification generated, pertaining to the NCO1 module, is a 'WARNING' notifi
 
 ### Setup - Software
 
-Click 'Generate' button within the Project Resources Menu to generate the code (Figure 17).
+Click the 'Generate' button within the Project Resources Menu to generate the code (Figure 17).
 
 *Figure 17 -  Generate Code*
 
@@ -249,13 +249,13 @@ A popup may appear once the 'Generate' button is clicked (see Figure 18).  Click
 
 #### Application Code
 
-Next, the CLC3_OUT signal needs to be configured as a clock source (since it had the 'WARNING' notification).  This configuration will be done by setting the output bit for the CLC3 module.  To do this, navigate to the <span style = "font-family:Courier New;"> main.c</span> file in Figure 19.
+Next, the CLC3_OUT signal needs to be configured as a clock source (since it had the 'WARNING' notification).  This configuration will be done by setting the output bit for the CLC3 module.  To do this, navigate to the  'main.c' file in Figure 19.
 
-*Figure 19 -  Navigate to <span style = "font-family:Courier New;"> main.c </span>*
+*Figure 19 -  Navigate to 'main.c'*
 
 ![Navigate to main.c](images/Navigate_to_maindotc.png)
 
-Open up the <span style = "font-family:Courier New;"> main.c</span> source file. Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
+Open up the 'main.c' source file. Insert the following code inside the 'int main(void)' loop after the 'SYSTEM_Initialize();' line but above the 'while(1)' loop:
 
     CLCDATA = 0x4; //set CLC3_OUT output bit
     
