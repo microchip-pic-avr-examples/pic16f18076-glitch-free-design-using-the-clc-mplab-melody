@@ -249,7 +249,7 @@ A popup may appear once the 'Generate' button is clicked (see Figure 18).  Click
 
 #### Application Code
 
-Next, the CLC3_OUT signal needs to be configured as a clock source (since it had the 'WARNING' notification).  This configuration will be done by setting the output bit for the CLC3 module.  To do this, navigate to the  'main.c' file in Figure 19.
+Next, the CLC3_OUT signal needs to be configured as a clock source (since it had the 'WARNING' notification).  This configuration will be done by setting the output bit for the CLC3 module.  To do this, navigate to the  `main.c` file in Figure 19.
 
 *Figure 19 -  Navigate to 'main.c'*
 
