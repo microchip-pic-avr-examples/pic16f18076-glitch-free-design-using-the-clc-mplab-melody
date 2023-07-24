@@ -13,11 +13,11 @@ This example shows how to configure the Configurable Logic Cell (CLC) Peripheral
 ## Software Used
 
 
-- [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) 6.0.0 or newer
+- [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) 6.10.0 or newer
 - [MPLAB Xpress IDE](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xpress) (alternative to MPLAB X IDE)
-- [MPLAB XC8 Compiler](http://www.microchip.com/mplab/compilers) 2.36 or a newer compiler 
-- [MPLAB Code Configurator (MCC)](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator) 5.1.9 or newer 
-- [Microchip PIC16F1xxxx Series Device Support pack](https://packs.download.microchip.com/) 1.14.187 or newer Device Pack
+- [MPLAB XC8 Compiler](http://www.microchip.com/mplab/compilers) 2.41 or a newer compiler 
+- [MPLAB Code Configurator (MCC)](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator) 5.3.7 or newer 
+- [Microchip PIC16F1xxxx Series Device Support pack](https://packs.download.microchip.com/) 1.19.363 or newer Device Pack
 
 
 

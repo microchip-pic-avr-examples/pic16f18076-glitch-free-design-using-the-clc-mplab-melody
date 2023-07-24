@@ -10,21 +10,21 @@
         "shortDescription": "This code example demonstrates a glitch-free design using the CLC peripheral of the PIC microcontroller. Compatible PIC16F180xx family MCUs are: PIC16F18076",
         "ide": {
             "name": "MPLAB X",
-            "semverRange": ">=6.0.0"
+            "semverRange": ">=6.10.0"
         },
         "compiler": [
             {
                 "name": "XC8",
-                "semverRange": "^2.36.0"
+                "semverRange": "^2.41.0"
             }
         ],
         "dfp": {
             "name": "PIC16F1xxxx_DFP",
-            "semverRange": ">=1.14.187"
+            "semverRange": ">=1.19.363"
         },
         "configurator": {
             "name": "MCC",
-            "semverRange": ">=5.1.9"
+            "semverRange": ">=5.3.7"
         },
         "device": {
             "metaDataVersion": "1.0.0",
